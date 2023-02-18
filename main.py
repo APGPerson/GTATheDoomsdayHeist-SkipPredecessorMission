@@ -1,4 +1,5 @@
-import sys
+import sys,pywintypes
+#import pywintypes to pack to exe file
 
 import pyautogui,time
 def PressKey(sec,key):
@@ -60,13 +61,13 @@ if __name__ == '__main__':
         print('请输入你想跳过前置任务的任务的数字顺序(1,2或3)')
         uin = input('>>')
         if uin == '1' or uin == '2':
-            isUserInput = False
+            isUserInput = True
             for a in range(1,11):
                 print(str(10-a)+'s')
                 time.sleep(1)
             Mission1_2()
         elif uin == '3':
-            isUserInput = False
+            isUserInput = True
             for b in range(1,11):
                 print(str(10-b)+'s')
                 time.sleep(1)
