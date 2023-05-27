@@ -1,18 +1,20 @@
 import sys
 from PyQt5.QtWidgets import QApplication,QMainWindow
 import pyautogui
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread,pyqtSignal
 from os import system
 import time
 import ctypes
 from tkinter import messagebox
 import logging
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(595, 359)
-        MainWindow.setMinimumSize(QtCore.QSize(595, 359))
+        MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setMaximumSize(QtCore.QSize(595, 359))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -77,21 +79,21 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "末日豪劫跳前置助手"))
-        self.radioButton.setText(_translate("MainWindow", "连接网络"))
-        self.NETOFF.setText(_translate("MainWindow", "不连接网络(推荐)"))
-        self.label.setText(_translate("MainWindow", "危险：不花钱，有一定的风险，如果程序出现问题也不会有损失，推荐"))
-        self.label_2.setText(_translate("MainWindow", "GTA末日豪劫 跳前置助手"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "SkipPredecessorMission"))
+        self.radioButton.setText(_translate("MainWindow", "connect to the network"))
+        self.NETOFF.setText(_translate("MainWindow", "Disconnection of the network(recommended)"))
+        self.label.setText(_translate("MainWindow", "Dangerious:does not cost money, there is a certain risk, there will be no loss if there is a problem with the program, recommended"))
+        self.label_2.setText(_translate("MainWindow", "GTATheDoomsdayHeist-SkipPredecessorMission"))
         self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">日志记录</p></body></html>"))
-        self.Mission_3.setText(_translate("MainWindow", "任务3"))
-        self.Mission_2.setText(_translate("MainWindow", "任务2"))
-        self.Mission.setText(_translate("MainWindow", "任务1"))
-        self.pushButton.setText(_translate("MainWindow", "跳过前置任务"))
-        self.pushButton_2.setText(_translate("MainWindow", "跳过等待时间"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Log view</p></body></html>"))
+        self.Mission_3.setText(_translate("MainWindow", "Mission 3"))
+        self.Mission_2.setText(_translate("MainWindow", "Mission 2"))
+        self.Mission.setText(_translate("MainWindow", "Mission 1"))
+        self.pushButton.setText(_translate("MainWindow", "Skip Predecessor Mission"))
+        self.pushButton_2.setText(_translate("MainWindow", "Skip wait times"))
 
 def PressKey(sec,key):
     pyautogui.keyDown(key)
@@ -154,15 +156,15 @@ def Mission3():
 def Network(need):
     if need == True:
         system('netsh advfirewall firewall add rule name="GTASKIPRULE100" dir=out action=block')
-        text='\n['+time.ctime()+']添加出站规则'
+        text='\n['+time.ctime()+']Add an outbound rule'
         system('netsh advfirewall firewall set rule name="GTASKIPRULE100" new enable=yes')
-        text+='\n['+time.ctime()+']启动出站规则'
+        text+='\n['+time.ctime()+']Start an outbound rule'
         return text
     elif need == False:
         system('netsh advfirewall firewall set rule name="GTASKIPRULE100" new enable=no')
-        text='\n['+time.ctime()+']停止出站规则'
+        text='\n['+time.ctime()+']Stop an outbound rule'
         system('netsh advfirewall firewall delete rule name="GTASKIPRULE100"')
-        text+='\n['+time.ctime()+']移除出站规则'
+        text+='\n['+time.ctime()+']Remove an outbound rule'
         return text
 
 class Thread(QThread):
@@ -174,7 +176,7 @@ class Thread(QThread):
         self.ui=ui
     def run(self):
         for i in range(10):
-            self.text = '\n倒计时:' + str(9 - i) + '秒'
+            self.text = '\ncountdown:' + str(9 - i) + 'sec'
             self.sinout.emit(self.text)
             self.sleep(1)
         if self.connect == False:
@@ -188,7 +190,7 @@ class Thread(QThread):
             self.text=Network(False)
             self.sinout.emit(self.text)
         self.sinout.emit('\n['+time.ctime()+']Success')
-        self.sinout.emit('\n!!!请使用Alt+F4组合键强制保存,右下角出现“否ESC”后按ESC以继续游戏!!!\n')
+        self.sinout.emit('\n!!!Please use Alt+F4 key combination to force save, and press ESC after "No ESC" appears in the lower right corner to continue the game!!!\n')
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton_2.setEnabled(True)
         self.ui.radioButton.setEnabled(True)
@@ -206,7 +208,7 @@ class Thread2(QThread):
         self.ui=ui
     def run(self):
         for i in range(10):
-            self.text = '\n倒计时:' + str(9 - i) + '秒'
+            self.text = '\ncountdown:' + str(9 - i) + 'sec'
             self.sinout2.emit(self.text)
             self.sleep(1)
         if self.connect == False:
@@ -218,10 +220,10 @@ class Thread2(QThread):
             PressKey(1,'enter')
             self.text=Network(False)
             self.sinout2.emit(self.text)
-            self.sinout2.emit('\n!!!请查看是否购买正确任务，如果不正确请打给莱斯特以取消任务!!!')
+            self.sinout2.emit('\n!!!Please check that you purchased the correct task, and if not, call Lester to cancel the mission!!!')
         else:
-            self.sinout2.emit('\n!!!请查看是否进入购买您想要跳过CD的任务的购买界面，如果未进入请按ESC退出!!!')
-        self.sinout2.emit('\n!!!请使用Alt+F4组合键强制保存,右下角出现“否ESC”后按ESC以继续游戏!!!\n')
+            self.sinout2.emit('\n!!!Please check whether to enter the purchase screen for the task you want to skip the CD, and if not, press ESC to exit!!!')
+        self.sinout2.emit('\n!!!Please use Alt+F4 key combination to force save, and press ESC after "No ESC" appears in the lower right corner to continue the game!!!\n')
         self.ui.pushButton.setEnabled(True)
         self.ui.pushButton_2.setEnabled(True)
         self.ui.radioButton.setEnabled(True)
@@ -257,22 +259,22 @@ class window(object):
             self.connect=True
         elif self.ui.NETOFF.isChecked() == True:
             self.connect=False
-        self.text='['+time.ctime()+']开始跳过前置:'+self.mode+'\n['+time.ctime()+']是否不断网:'+str(self.connect)
+        self.text='['+time.ctime()+']Start skipping predecessors:'+self.mode+'\n['+time.ctime()+']Whether the network is not interrupted:'+str(self.connect)
         self.ui.textBrowser.setText(self.text)
-        self.text+='\n请提前进入任务前置界面并选择左上角的前置任务(不是准备任务)'
+        self.text+='\nPlease enter the task pre-task interface in advance and select the pre-task in the upper left corner (not the preparation task)'
         self.ui.textBrowser.setText(self.text)
         self.th=Thread(self.mode,self.connect,self.ui)
         self.th.start()
         self.th.sinout.connect(self.display)
     def Skipt(self):
         while self.start:
-            if messagebox.askquestion(title='无CD任务',message='末日豪劫1数据泄露是否没有CD')=='yes':
+            if messagebox.askquestion(title='CD-free mission',message='Doom 1 data breach if there is no CD')=='yes':
                 self.start='M1'
                 break
-            if messagebox.askquestion(title='无CD任务',message='末日豪劫2博格丹危机是否没有CD')=='yes':
+            if messagebox.askquestion(title='CD-free mission',message='Doomsday Havoc 2 Bogdan Crisis Is There No CD')=='yes':
                 self.start='M2'
                 break
-            if messagebox.askquestion(title='无CD任务',message='末日豪劫3末日将至是否没有CD')=='yes':
+            if messagebox.askquestion(title='CD-free mission',message='Doom 3: Is Doom Coming No CD')=='yes':
                 self.start='M3'
                 break
         self.start=int(self.start[1])
@@ -293,7 +295,7 @@ class window(object):
             self.connect = True
         elif self.ui.NETOFF.isChecked() == True:
             self.connect = False
-        self.text = '[' + time.ctime() + ']开始跳过CD:' + str(self.start)+':'+str(self.mode) + '\n[' + time.ctime() + ']是否不断网:' + str(self.connect)
+        self.text = '[' + time.ctime() + ']Start skipping CDs:' + str(self.start)+':'+str(self.mode) + '\n[' + time.ctime() + ']Whether the network is not interrupted:' + str(self.connect)
         self.ui.textBrowser.setText(self.text)
         self.th1 = Thread2(self.mode, self.connect,self.start, self.ui)
         self.th1.start()
