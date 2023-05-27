@@ -3,6 +3,8 @@ GTA TheDoomsdayHeist Skip Predecessor Mission
 # GTA末日豪劫前置任务&CD跳过器
 #### If my program helped you,please give me a star:(
 #### 如果帮到了您，请给我一个Star:(
+![](https://img.shields.io/badge/Python-100%25-green)
+#### Powered by APGPerson
 ---
 ### !!!The major version update is completed and enters the stage of fixing bugs!!!
 ### !!!大版本更新完成，进入修复bug阶段!!!
