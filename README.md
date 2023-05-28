@@ -6,6 +6,7 @@ GTA TheDoomsdayHeist Skip Predecessor Mission
 #### 如果帮到了您，请给我一个Star:(
 ![](https://img.shields.io/badge/Python-100%25-green)
 #### Powered by APGPerson
+![](https://avatars.githubusercontent.com/u/121323641?v=4)
 ---
 ### !!!The major version update is completed and enters the stage of fixing bugs!!!
 ### !!!大版本更新完成，进入修复bug阶段!!!
