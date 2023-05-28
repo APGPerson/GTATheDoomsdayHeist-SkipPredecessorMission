@@ -1,3 +1,4 @@
+![](https://static.wikia.nocookie.net/gtawiki/images/a/a3/TheDoomsdayHeist-GTAO-Artwork.png/revision/latest?cb=20171208173427)
 # GTATheDoomsdayHeist-SkipPredecessorMission
 GTA TheDoomsdayHeist Skip Predecessor Mission
 # GTA末日豪劫前置任务&CD跳过器
