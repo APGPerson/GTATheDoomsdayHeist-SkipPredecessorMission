@@ -23,7 +23,7 @@ GTA TheDoomsdayHeist Skip Predecessor Mission
 
 ---
 # New version 下个版本:V2.0
-- [] Use C++ rewrite all 使用C++重写一切
-- [] Top GTAV window 置顶GTA5窗口
+- [ ] Use C++ rewrite all 使用C++重写一切
+- [ ] Top GTAV window 置顶GTA5窗口
 # Maybe will add 也许将要添加:
-- []Auto save 自动保存
+- [ ] Auto save 自动保存
