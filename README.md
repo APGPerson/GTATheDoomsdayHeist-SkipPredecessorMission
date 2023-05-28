@@ -20,3 +20,10 @@ GTA TheDoomsdayHeist Skip Predecessor Mission
 - [x] Disconnection finish 断网完成
 
 # Never support MacOS and Linux 不会制作MacOS及Linux端
+
+---
+# New version 下个版本:V2.0
+- [] Use C++ rewrite all 使用C++重写一切
+- [] Top GTAV window 置顶GTA5窗口
+# Maybe will add 也许将要添加:
+- []Auto save 自动保存
